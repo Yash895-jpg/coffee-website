@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 3000);
 
-  /* ================= SCROLL REVEAL ANIMATION ================= */
+  /* ================= SCROLL REVEAL ================= */
   const reveals = document.querySelectorAll(".reveal");
 
   function revealOnScroll() {
@@ -35,9 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // Trigger on page load
+  revealOnScroll();
 
-  /* ================= BACK TO TOP BUTTON ================= */
+  /* ================= BACK TO TOP ================= */
   const backToTop = document.getElementById("backToTop");
 
   if (backToTop) {
@@ -53,6 +53,26 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth"
+      });
+    });
+  }
+
+  /* ================= MENU SEARCH ================= */
+  const searchInput = document.getElementById("menuSearch");
+  const menuCards = document.querySelectorAll(".menu-card");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const value = searchInput.value.toLowerCase();
+
+      menuCards.forEach(card => {
+        const name = card.getAttribute("data-name");
+
+        if (name.includes(value)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
       });
     });
   }
